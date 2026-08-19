@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>イエノコト｜住まいの無料相談サービス｜家づくり・リフォームの「わからない」を整理します</title>
+<meta name="description" content="家づくり、リフォーム、住み替え。何から始めればいいかわからない方のための無料相談サービス「イエノコト」。専門アドバイザーが中立の立場でお話をうかがい、あなたに合った進め方を一緒に整理します。相談は何度でも無料、無理な営業はいたしません。">
+<meta name="robots" content="index,follow">
+
+<!-- OGP（実運用時は画像URLなどを差し替えてください） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="イエノコト">
+<meta property="og:title" content="イエノコト｜住まいの無料相談サービス">
+<meta property="og:description" content="家づくり・リフォームの「わからない」を、専門アドバイザーが無料で整理します。相談は何度でも無料、無理な営業はいたしません。">
+<meta property="og:image" content="https://example.com/ogp-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   0. RESET & BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+body, h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+input, textarea, select { font: inherit; color: inherit; }
+
+/* =========================================================
+   1. DESIGN TOKENS — この4系統を変更すると全体の配色が変わります
+   ========================================================= */
+:root {
+  /* ベース：障子紙を思わせる、あたたかい生成り色 */
+  --color-bg:        #F7F3EA;
+  --color-bg-alt:    #EFE7D4;
+  --color-surface:   #FFFFFF;
+
+  /* メイン：藍にちかい深い松葉色（信頼・専門性） */
+  --color-primary:      #1F3D3A;
+  --color-primary-dark: #142826;
+  --color-primary-soft: #E3ECE9;
+
+  /* サブ：檜（ひのき）を思わせる木の色（親しみやすさ） */
+  --color-wood:      #C7996A;
+  --color-wood-soft: #F1E1CC;
+
+  /* アクセント：柿色（行動喚起・CTA専用） */
+  --color-accent:      #E2571F;
+  --color-accent-dark: #BE441A;
+  --color-accent-soft: #FBE4D8;
+
+  --color-ink:      #2A2621;
+  --color-ink-sub:  #5B5548;
+  --color-line:     rgba(31,61,58,0.14);
+  --color-white:    #FFFFFF;
+
+  --font-display: 'Shippori Mincho', serif;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
+
+  --container-max: 1200px;
+  --radius-card: 14px;
+  --radius-pill: 999px;
+  --shadow-card: 0 4px 20px rgba(31,61,58,0.08);
+  --shadow-card-hover: 0 10px 28px rgba(31,61,58,0.14);
+
+  --header-h: 64px;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 72px; /* モバイル固定CTAの分の余白 */
+}
+@media (min-width: 1024px) {
+  body { padding-bottom: 0; }
+}
+
+/* =========================================================
+   2. 汎用レイアウト
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+section { padding: 64px 0; position: relative; }
+@media (min-width: 768px) { section { padding: 96px 0; } }
+
+.section-alt { background: var(--color-bg-alt); }
+.section-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--color-wood);
+  margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--color-wood);
+}
+
+.section-head { max-width: 640px; margin: 0 auto 44px; text-align: center; }
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.2vw, 2.15rem);
+  line-height: 1.6;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.section-primary .section-head h2 { color: var(--color-white); }
+.section-head p {
+  margin-top: 16px;
+  color: var(--color-ink-sub);
+  font-size: 0.95rem;
+}
+.section-primary .section-head p { color: rgba(255,255,255,0.78); }
+
+/* 障子格子（しょうじごうし）— 本サイトのシグネチャーライン */
+.shoji-rule {
+  height: 46px;
+  width: 100%;
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(var(--color-line) 1px, transparent 1px);
+  background-size: 34px 100%, 100% 46px;
+  background-position: center;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   3. ボタン
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 17px 30px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  white-space: nowrap;
+}
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(226,87,31,0.32);
+}
+.btn-accent:hover { background: var(--color-accent-dark); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(226,87,31,0.38); }
+.btn-accent:active { transform: translateY(0); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn-outline:hover { background: var(--color-primary); color: var(--color-white); transform: translateY(-2px); }
+
+.btn-line {
+  background: #06C755;
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(6,199,85,0.28);
+}
+.btn-line:hover { background: #05a847; transform: translateY(-2px); }
+
+.btn-block { width: 100%; }
+.btn-lg { padding: 19px 34px; font-size: 1.05rem; }
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-wood);
+  outline-offset: 3px;
+}
+
+.cta-note {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--color-ink-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.section-primary .cta-note { color: rgba(255,255,255,0.75); }
+.cta-note .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+
+/* =========================================================
+   4. アイコン
+   ========================================================= */
+.icon { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* =========================================================
+   5. ヘッダー
+   ========================================================= */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  z-index: 500;
+  background: rgba(247,243,234,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-line);
+  transition: box-shadow 0.25s ease;
+}
+.site-header.is-scrolled { box-shadow: 0 6px 20px rgba(31,61,58,0.08); }
+.site-header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { display: flex; align-items: baseline; gap: 8px; }
+.logo-mark { font-family: var(--font-display); font-size: 1.28rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.03em; }
+.logo-sub { font-size: 0.62rem; color: var(--color-ink-sub); letter-spacing: 0.06em; display: none; }
+@media (min-width: 480px) { .logo-sub { display: inline; } }
+
+.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-tel {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--color-ink-sub);
+}
+.header-tel strong { font-size: 1rem; color: var(--color-primary); font-weight: 700; }
+@media (min-width: 768px) { .header-tel { display: flex; } }
+
+.header-cta { padding: 11px 20px; font-size: 0.86rem; }
+
+/* =========================================================
+   6. ヒーロー（ファーストビュー）
+   ========================================================= */
+.hero {
+  padding-top: calc(var(--header-h) + 40px);
+  padding-bottom: 56px;
+  background: var(--color-bg);
+  overflow: hidden;
+  position: relative;
+}
+.hero .container {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero { padding-top: calc(var(--header-h) + 72px); padding-bottom: 88px; }
+  .hero .container { grid-template-columns: 1.05fr 0.95fr; gap: 24px; }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  padding: 8px 16px 8px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  color: var(--color-ink-sub);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 22px;
+}
+.hero-badge .num { color: var(--color-accent); font-weight: 900; font-size: 0.95rem; }
+.hero-badge .badge-icon {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--color-primary-soft);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary);
+}
+.hero-badge .badge-icon .icon { width: 15px; height: 15px; }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5.6vw, 3rem);
+  line-height: 1.55;
+  color: var(--color-primary);
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(transparent 62%, var(--color-wood-soft) 62%);
+}
+.hero-lead {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: var(--color-ink-sub);
+  max-width: 46ch;
+}
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 26px;
+}
+.hero-point {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.86rem; font-weight: 700; color: var(--color-primary);
+}
+.hero-point .icon { width: 19px; height: 19px; color: var(--color-accent); }
+
+.hero-cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-cta .btn { flex: 1 1 220px; }
+
+/* ヒーロービジュアル：オリジナルのライン画（家＋差し込む光） */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+  border-radius: 24px;
+  background:
+    radial-gradient(120% 90% at 78% 12%, var(--color-wood-soft) 0%, transparent 55%),
+    var(--color-primary-soft);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.hero-visual .shoji-bg {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(31,61,58,0.09) 0 1px, transparent 1px 15%),
+    repeating-linear-gradient(0deg, rgba(31,61,58,0.09) 0 1px, transparent 1px 20%);
+  opacity: 0;
+  animation: shojiIn 1.1s ease-out 0.15s forwards;
+}
+@keyframes shojiIn { to { opacity: 1; } }
+.hero-visual svg.house-art { position: relative; width: 78%; margin: 11% auto 0; display: block; }
+.hero-visual .ray { opacity: 0; transform-origin: 50% 100%; animation: rayIn 0.9s ease-out forwards; }
+.hero-visual .ray:nth-child(1) { animation-delay: 0.35s; }
+.hero-visual .ray:nth-child(2) { animation-delay: 0.48s; }
+.hero-visual .ray:nth-child(3) { animation-delay: 0.61s; }
+.hero-visual .ray:nth-child(4) { animation-delay: 0.74s; }
+@keyframes rayIn { from { opacity: 0; transform: scaleY(0.7); } to { opacity: 0.55; transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual .shoji-bg, .hero-visual .ray { animation: none; opacity: 1; }
+}
+
+/* =========================================================
+   7. 共感セクション：こんなお悩みありませんか
+   ========================================================= */
+.worry-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .worry-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .worry-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.worry-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: 24px 22px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.worry-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+.worry-card .icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.worry-card .icon-wrap .icon { width: 22px; height: 22px; }
+.worry-card p { font-size: 0.94rem; font-weight: 500; color: var(--color-ink); padding-top: 6px; }
+
+.worry-bridge {
+  text-align: center;
+  margin-top: 40px;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.worry-bridge .icon { width: 22px; height: 22px; color: var(--color-wood); margin: 0 auto 12px; display: block; }
+
+/* =========================================================
+   8. 解決策セクション
+   ========================================================= */
+.solution-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+  counter-reset: sol;
+}
+@media (min-width: 640px) { .solution-grid { grid-template-columns: 1fr 1fr; } }
+
+.solution-card {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 30px 24px 26px;
+  box-shadow: var(--shadow-card);
+  border-top: 3px solid var(--color-wood);
+}
+.solution-card .sol-index {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--color-wood);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  display: block;
+}
+.solution-card h3 {
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.solution-card p { font-size: 0.9rem; color: var(--color-ink-sub); }
+
+/* =========================================================
+   9. メリットセクション
+   ========================================================= */
+.benefit-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .benefit-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .benefit-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.benefit-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: 26px 22px;
+  text-align: left;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.benefit-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+.benefit-card .icon-wrap {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.benefit-card .big-num {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.benefit-card .big-num span { font-size: 0.95rem; margin-left: 2px; }
+.benefit-card h3 { font-size: 0.98rem; font-weight: 700; color: var(--color-primary); margin-bottom: 8px; }
+.benefit-card p { font-size: 0.85rem; color: var(--color-ink-sub); }
+
+/* =========================================================
+   10. 選ばれる理由／実績（数値）
+   ========================================================= */
+.stat-grid {
+  display: grid;
+  gap: 1px;
+  background: rgba(255,255,255,0.14);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  grid-template-columns: 1fr 1fr;
+}
+@media (min-width: 768px) { .stat-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-item {
+  background: var(--color-primary-dark);
+  padding: 30px 20px;
+  text-align: center;
+}
+.stat-item .stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  font-weight: 700;
+  color: var(--color-white);
+  display: flex; align-items: baseline; justify-content: center; gap: 4px;
+}
+.stat-item .stat-num .unit { font-size: 0.9rem; color: var(--color-wood); font-family: var(--font-body); font-weight: 700; }
+.stat-item .stat-label { margin-top: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.7); letter-spacing: 0.02em; }
+.stat-note {
+  text-align: center; margin-top: 18px; font-size: 0.72rem; color: rgba(255,255,255,0.5);
+}
+
+.reason-list {
+  margin-top: 52px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .reason-list { grid-template-columns: 1fr 1fr; } }
+.reason-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-card);
+  padding: 20px;
+}
+.reason-item .icon { color: var(--color-wood); width: 22px; height: 22px; margin-top: 2px; }
+.reason-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.reason-item p { font-size: 0.83rem; color: rgba(255,255,255,0.72); }
+
+/* =========================================================
+   11. ご利用の流れ
+   ========================================================= */
+.flow-list {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr;
+  counter-reset: step;
+}
+@media (min-width: 860px) { .flow-list { grid-template-columns: repeat(4, 1fr); gap: 18px; } }
+
+.flow-item {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 30px 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+.flow-item .step-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  color: var(--color-white);
+  background: var(--color-primary);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+.flow-item h3 { font-size: 1rem; font-weight: 700; color: var(--color-primary); margin-bottom: 8px; }
+.flow-item p { font-size: 0.85rem; color: var(--color-ink-sub); }
+.flow-item .icon-wrap {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--color-wood-soft); color: var(--color-wood);
+  display: flex; align-items: center; justify-content: center;
+  position: absolute; top: 24px; right: 22px;
+}
+@media (min-width: 860px) {
+  .flow-connector {
+    position: absolute; top: 56px; left: 0; right: 0; height: 1px;
+    background: repeating-linear-gradient(to right, var(--color-line) 0 8px, transparent 8px 14px);
+    z-index: 0;
+  }
+}
+
+/* =========================================================
+   12. 安心セクション
+   ========================================================= */
+.assurance-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 640px) { .assurance-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .assurance-grid { grid-template-columns: repeat(6, 1fr); } }
+.assurance-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  padding: 22px 14px;
+  text-align: center;
+}
+.assurance-item .icon-wrap {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--color-primary-soft); color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.assurance-item p { font-size: 0.82rem; font-weight: 700; color: var(--color-primary); }
+
+/* =========================================================
+   13. お客様の声
+   ========================================================= */
+.voice-notice {
+  max-width: 640px; margin: -20px auto 40px;
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--color-ink-sub);
+  background: var(--color-wood-soft);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  display: table;
+}
+.voice-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .voice-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1080px) { .voice-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.voice-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.voice-top { display: flex; align-items: center; gap: 12px; }
+.voice-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+  flex-shrink: 0;
+}
+.voice-meta strong { display: block; font-size: 0.9rem; color: var(--color-primary); }
+.voice-meta span { font-size: 0.76rem; color: var(--color-ink-sub); }
+.voice-tag {
+  align-self: flex-start;
+  font-size: 0.72rem; font-weight: 700; color: var(--color-accent);
+  background: var(--color-accent-soft);
+  padding: 4px 12px; border-radius: var(--radius-pill);
+}
+.voice-card p.voice-text { font-size: 0.89rem; color: var(--color-ink); flex-grow: 1; }
+.voice-stars { color: var(--color-wood); display: flex; gap: 2px; }
+.voice-stars .icon { width: 15px; height: 15px; fill: currentColor; }
+
+/* =========================================================
+   14. FAQ
+   ========================================================= */
+.faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%;
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 22px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--color-primary);
+}
+.faq-q .q-mark {
+  font-family: var(--font-display);
+  color: var(--color-white);
+  background: var(--color-primary);
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; flex-shrink: 0;
+}
+.faq-q .chev { margin-left: auto; transition: transform 0.25s ease; color: var(--color-wood); }
+.faq-item[data-open="true"] .chev { transform: rotate(180deg); }
+.faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+.faq-item[data-open="true"] .faq-a { grid-template-rows: 1fr; }
+.faq-a-inner { overflow: hidden; }
+.faq-a p {
+  padding: 0 22px 22px 66px;
+  font-size: 0.88rem;
+  color: var(--color-ink-sub);
+}
+
+/* =========================================================
+   15. 最終CTA & フォーム
+   ========================================================= */
+.final-cta-top { text-align: center; }
+.assure-strip {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px;
+  margin: 26px auto 6px;
+}
+.assure-strip span {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.88);
+}
+.assure-strip .icon { width: 16px; height: 16px; color: var(--color-wood); }
+
+.contact-wrap {
+  margin-top: 48px;
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 32px 22px;
+  max-width: 720px;
+  margin-left: auto; margin-right: auto;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+}
+@media (min-width: 640px) { .contact-wrap { padding: 44px 48px; } }
+
+.contact-wrap h3 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.contact-wrap .contact-sub {
+  text-align: center; color: var(--color-ink-sub); font-size: 0.85rem; margin-bottom: 28px;
+}
+
+.form-row { margin-bottom: 20px; }
+.form-row label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.86rem; font-weight: 700; color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.req-tag, .opt-tag {
+  font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill);
+}
+.req-tag { background: var(--color-accent-soft); color: var(--color-accent-dark); }
+.opt-tag { background: var(--color-bg-alt); color: var(--color-ink-sub); }
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="tel"],
+.form-row textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-line);
+  background: var(--color-bg);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 0.94rem;
+  color: var(--color-ink);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.form-row input:focus, .form-row textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+.form-row textarea { min-height: 110px; resize: vertical; }
+
+.radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+.radio-pill {
+  position: relative;
+}
+.radio-pill input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.radio-pill span {
+  display: block;
+  padding: 11px 18px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-sub);
+  transition: all 0.15s ease;
+}
+.radio-pill input:checked + span {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.radio-pill input:focus-visible + span { outline: 3px solid var(--color-wood); outline-offset: 2px; }
+
+.form-privacy { font-size: 0.76rem; color: var(--color-ink-sub); margin: 22px 0 18px; }
+.form-privacy a { text-decoration: underline; color: var(--color-primary); }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 30px 10px;
+}
+.form-success.is-visible { display: block; }
+.contact-form.is-hidden { display: none; }
+.form-success .icon-wrap {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--color-primary-soft); color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+}
+.form-success h4 { font-family: var(--font-display); color: var(--color-primary); font-size: 1.15rem; margin-bottom: 10px; }
+.form-success p { font-size: 0.88rem; color: var(--color-ink-sub); }
+
+/* =========================================================
+   16. フッター
+   ========================================================= */
+.site-footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.6);
+  padding: 40px 0 96px;
+  font-size: 0.78rem;
+}
+@media (min-width: 1024px) { .site-footer { padding-bottom: 40px; } }
+.site-footer .container { display: flex; flex-direction: column; gap: 18px; align-items: center; text-align: center; }
+.footer-logo { font-family: var(--font-display); color: var(--color-white); font-size: 1.1rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+.footer-links a:hover { color: var(--color-white); }
+
+/* =========================================================
+   17. モバイル固定CTA
+   ========================================================= */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 600;
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-line);
+  box-shadow: 0 -6px 20px rgba(0,0,0,0.08);
+}
+.sticky-cta .btn { flex: 1; padding: 15px 10px; font-size: 0.9rem; }
+@media (min-width: 1024px) { .sticky-cta { display: none; } }
+
+/* =========================================================
+   18. スクロールリビール
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* stagger */
+.reveal-group > * { transition-delay: calc(var(--i, 0) * 70ms); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ アイコンスプライト（用途:全アイコン共通定義） ============ -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-6h4v6"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v8M9.3 9.7c0-1 1-1.7 2.7-1.7s2.7.8 2.7 1.6c0 2.2-5.4 1.1-5.4 3.4 0 .9 1 1.7 2.7 1.7s2.7-.7 2.7-1.7"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1-3.8 4-5.8 7.5-5.8s6.5 2 7.5 5.8"/></symbol>
+  <symbol id="i-question" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.5c0-1.5 1.2-2.6 2.7-2.6s2.6 1 2.6 2.3c0 1.7-2.6 2-2.6 3.6"/><circle cx="12" cy="16.6" r="0.9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-yen" viewBox="0 0 24 24"><path d="M7 4l5 7 5-7M12 11v9M8.5 13.5h7M8.5 16.5h7"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14M4 8h4M16 8h4M4 16h4M16 16h4"/></symbol>
+  <symbol id="i-sales" viewBox="0 0 24 24"><path d="M4 20 20 4M8 4H4v4M16 20h4v-4"/></symbol>
+  <symbol id="i-worry-user" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0.8-3.3 3-5 5.5-5M15 5.5c1.6.3 2.8 1.7 2.8 3.4 0 1.8-1.3 3.2-3 3.4M14.5 13.5c2.6.4 4.5 2.1 5 5.5"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4V5z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21z"/><circle cx="12" cy="9.3" r="2.4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.5l3.5 2"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><rect x="4" y="4" width="11" height="16" rx="1.5"/><path d="M17 8h3v9a2 2 0 0 1-2 2h-1M8 18h3"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 17.3l-5.4 3 1.1-6.1L3.2 9.9l6.1-.8L12 3.5z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="9" r="2.4"/><path d="M2.8 19c.7-3.2 2.9-5 5.7-5s5 1.8 5.7 5M15 14.5c2.3.2 4 1.8 4.6 4.5"/></symbol>
+  <symbol id="i-family" viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.6"/><circle cx="16" cy="7.5" r="2.1"/><path d="M3 19c.6-3 2.4-4.6 5-4.6s4.4 1.6 5 4.6M14 19c.4-2.4 1.9-3.7 4-3.7 1 0 1.9.3 2.6.9"/></symbol>
+  <symbol id="i-beginner" viewBox="0 0 24 24"><path d="M12 3.5l2.7 5.6 6.1.8-4.5 4.3 1.1 6.1L12 17.3l-5.4 3 1.1-6.1L3.2 9.9l6.1-.8L12 3.5z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3l1.5 4.5-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2L21 15v3a2 2 0 0 1-2 2C11.8 20 4 12.2 4 5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="1.5"/><path d="M4.5 6.5l7.5 6 7.5-6"/></symbol>
+  <symbol id="i-line" viewBox="0 0 24 24"><path d="M4 5h16v10H8l-4 4V5z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3.5h14v17l-3-2-2 2-2-2-2 2-2-2-3 2v-17z"/><path d="M8 8h8M8 11.5h8M8 15h5"/></symbol>
+</svg>
+
+<!-- ============ ヘッダー ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a href="#hero" class="logo">
+      <span class="logo-mark">イエノコト</span>
+      <span class="logo-sub">住まいの無料相談</span>
+    </a>
+    <div class="header-actions">
+      <div class="header-tel">
+        <svg class="icon" style="width:18px;height:18px;color:var(--color-primary)"><use href="#i-phone"/></svg>
+        <span>電話でも相談可<br><strong>0120-000-000</strong></span>
+      </div>
+      <a href="#contact" class="btn btn-accent header-cta">無料相談する</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ 01. ファーストビュー ============ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <div class="hero-badge">
+          <span class="badge-icon"><svg class="icon"><use href="#i-users"/></svg></span>
+          ご相談実績 <span class="num">○○,000</span> 件以上
+        </div>
+
+        <!-- ▼編集ポイント：メインキャッチコピー -->
+        <h1>家づくりも、リフォームも。<br>その<em>「わからない」</em>を、<br>ひとつずつ整理します。</h1>
+
+        <p class="hero-lead">
+          何から始めればいいか分からない。予算感がつかめない。業者選びに自信が持てない。
+          そんな住まいの悩みに、専門アドバイザーが中立な立場で寄り添う無料相談サービスです。
+        </p>
+
+        <div class="hero-points">
+          <span class="hero-point"><svg class="icon"><use href="#i-check"/></svg>相談は何度でも0円</span>
+          <span class="hero-point"><svg class="icon"><use href="#i-check"/></svg>無理な営業なし</span>
+          <span class="hero-point"><svg class="icon"><use href="#i-check"/></svg>オンライン対応</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-accent btn-lg">無料で相談してみる</a>
+          <a href="#contact" class="btn btn-line btn-lg"><svg class="icon" style="width:20px;height:20px"><use href="#i-line"/></svg>LINEで相談する</a>
+        </div>
+        <p class="cta-note">相談時間は約60分<span class="dot"></span>入力は1分で完了</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="shoji-bg"></div>
+        <svg class="house-art" viewBox="0 0 320 260">
+          <g class="ray" stroke="#C7996A" stroke-width="2" stroke-linecap="round">
+            <line x1="250" y1="10" x2="230" y2="60"/>
+          </g>
+          <g class="ray" stroke="#C7996A" stroke-width="2" stroke-linecap="round">
+            <line x1="275" y1="20" x2="248" y2="66"/>
+          </g>
+          <g class="ray" stroke="#C7996A" stroke-width="2" stroke-linecap="round">
+            <line x1="298" y1="36" x2="264" y2="76"/>
+          </g>
+          <g class="ray" stroke="#C7996A" stroke-width="2" stroke-linecap="round">
+            <line x1="230" y1="0" x2="215" y2="50"/>
+          </g>
+          <circle cx="256" cy="30" r="16" fill="#F1E1CC"/>
+          <path d="M30 140 160 55 290 140" fill="none" stroke="#1F3D3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="60" y="140" width="200" height="105" fill="#FFFFFF" stroke="#1F3D3A" stroke-width="5"/>
+          <rect x="140" y="170" width="42" height="75" fill="#1F3D3A"/>
+          <rect x="85" y="165" width="36" height="36" fill="none" stroke="#1F3D3A" stroke-width="4"/>
+          <line x1="103" y1="165" x2="103" y2="201" stroke="#1F3D3A" stroke-width="3"/>
+          <line x1="85" y1="183" x2="121" y2="183" stroke="#1F3D3A" stroke-width="3"/>
+          <rect x="199" y="165" width="36" height="36" fill="none" stroke="#1F3D3A" stroke-width="4"/>
+          <line x1="217" y1="165" x2="217" y2="201" stroke="#1F3D3A" stroke-width="3"/>
+          <line x1="199" y1="183" x2="235" y2="183" stroke="#1F3D3A" stroke-width="3"/>
+          <line x1="10" y1="245" x2="310" y2="245" stroke="#C7996A" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02. 悩みの共感セクション ============ -->
+  <section id="worries">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">EMPATHY</span>
+        <h2>こんなお悩み、<br class="only-sp">ありませんか？</h2>
+        <p>住まいのことは、悩みごとが複数重なっていることがほとんどです。<br>まずは、あなたの状況を教えてください。</p>
+      </div>
+
+      <div class="worry-grid reveal-group">
+        <div class="worry-card reveal" style="--i:0">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-question"/></svg></span>
+          <p>何から始めればいいのか、そもそもわからない</p>
+        </div>
+        <div class="worry-card reveal" style="--i:1">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-yen"/></svg></span>
+          <p>予算がどれくらい必要か、見当がつかない</p>
+        </div>
+        <div class="worry-card reveal" style="--i:2">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-compare"/></svg></span>
+          <p>どの会社に相談すればいいのか迷っている</p>
+        </div>
+        <div class="worry-card reveal" style="--i:3">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-sales"/></svg></span>
+          <p>相談すると、しつこく営業されそうで不安</p>
+        </div>
+        <div class="worry-card reveal" style="--i:4">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-worry-user"/></svg></span>
+          <p>一人（家族だけ）で決めるのが心配</p>
+        </div>
+        <div class="worry-card reveal" style="--i:5">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-chat"/></svg></span>
+          <p>専門用語が多く、話についていけるか不安</p>
+        </div>
+      </div>
+
+      <p class="worry-bridge reveal">
+        <svg class="icon"><use href="#i-house"/></svg>
+        そのお悩み、ひとつずつ<br class="only-sp">「イエノコト」が整理します。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 03. 解決策の提示 ============ -->
+  <section class="section-alt" id="solution">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">SOLUTION</span>
+        <h2>イエノコトができる、<br class="only-sp">4つのこと</h2>
+        <p>営業も査定もしません。あなたの状況を整理し、選択肢を見える化することに専念します。</p>
+      </div>
+
+      <div class="solution-grid reveal-group">
+        <div class="solution-card reveal" style="--i:0">
+          <span class="sol-index">01</span>
+          <h3>専門アドバイザーが無料でヒアリング</h3>
+          <p>ご予算やご希望、いま気になっていることを、専門知識を持つアドバイザーがじっくりお聞きします。</p>
+        </div>
+        <div class="solution-card reveal" style="--i:1">
+          <span class="sol-index">02</span>
+          <h3>あなたに合った進め方を整理</h3>
+          <p>新築・リフォーム・住み替えなど、状況に応じて「次に何をすべきか」をわかりやすく整理します。</p>
+        </div>
+        <div class="solution-card reveal" style="--i:2">
+          <span class="sol-index">03</span>
+          <h3>複数の選択肢を中立な立場で比較</h3>
+          <p>特定の会社に偏らない立場から、複数の選択肢のメリット・デメリットをフラットにお伝えします。</p>
+        </div>
+        <div class="solution-card reveal" style="--i:3">
+          <span class="sol-index">04</span>
+          <h3>納得いくまで、何度でも相談可能</h3>
+          <p>一度で決める必要はありません。ご家族で検討しながら、ご都合の良いペースでご利用いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04. サービスのメリット ============ -->
+  <section id="benefits">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">BENEFITS</span>
+        <h2>イエノコトなら、<br class="only-sp">こんなことができます</h2>
+      </div>
+
+      <div class="benefit-grid reveal-group">
+        <div class="benefit-card reveal" style="--i:0">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-coin"/></svg></span>
+          <div class="big-num">0<span>円</span></div>
+          <h3>相談料はずっと無料</h3>
+          <p>初回だけでなく、2回目以降のご相談やお見積り確認まで、追加費用は一切かかりません。</p>
+        </div>
+        <div class="benefit-card reveal" style="--i:1">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-map"/></svg></span>
+          <div class="big-num">○○<span>地域</span></div>
+          <h3>全国対応</h3>
+          <p>都市部から郊外まで、幅広いエリアでご相談を承っています。まずはお気軽にお問い合わせください。</p>
+        </div>
+        <div class="benefit-card reveal" style="--i:2">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-device"/></svg></span>
+          <div class="big-num">3<span>通り</span></div>
+          <h3>選べる相談スタイル</h3>
+          <p>対面・オンライン・LINEチャットから、ご都合の良い方法をお選びいただけます。</p>
+        </div>
+        <div class="benefit-card reveal" style="--i:3">
+          <span class="icon-wrap"><svg class="icon"><use href="#i-clock"/></svg></span>
+          <div class="big-num">60<span>分〜</span></div>
+          <h3>1回あたりの目安時間</h3>
+          <p>お仕事帰りや週末にも利用しやすい時間設定。事前予約でスムーズにご案内します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05. 選ばれる理由（実績） ============ -->
+  <section class="section-primary" id="reasons">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="color:var(--color-wood)">WHY CHOSEN</span>
+        <h2>なぜ、イエノコトが<br class="only-sp">選ばれているのか</h2>
+        <p>相談してよかった、と思っていただけることを大切にしています。</p>
+      </div>
+
+      <div class="stat-grid reveal-group">
+        <div class="stat-item reveal" style="--i:0">
+          <div class="stat-num">○○,000<span class="unit">件+</span></div>
+          <div class="stat-label">相談実績</div>
+        </div>
+        <div class="stat-item reveal" style="--i:1">
+          <div class="stat-num">○○<span class="unit">%</span></div>
+          <div class="stat-label">利用者満足度</div>
+        </div>
+        <div class="stat-item reveal" style="--i:2">
+          <div class="stat-num">○○<span class="unit">名</span></div>
+          <div class="stat-label">専門アドバイザー在籍</div>
+        </div>
+        <div class="stat-item reveal" style="--i:3">
+          <div class="stat-num">○○<span class="unit">都道府県</span></div>
+          <div class="stat-label">対応エリア</div>
+        </div>
+      </div>
+      <p class="stat-note">※数値は制作時点のダミー表記です。実際の実績データに差し替えてご利用ください。</p>
+
+      <div class="reason-list reveal-group">
+        <div class="reason-item reveal" style="--i:0">
+          <svg class="icon"><use href="#i-shield"/></svg>
+          <div><h4>第三者目線での比較</h4><p>特定の会社に属さない立場だから、フラットな情報提供ができます。</p></div>
+        </div>
+        <div class="reason-item reveal" style="--i:1">
+          <svg class="icon"><use href="#i-user"/></svg>
+          <div><h4>知識豊富な専門スタッフ</h4><p>資金計画から間取り、リフォーム範囲まで、幅広くご相談いただけます。</p></div>
+        </div>
+        <div class="reason-item reveal" style="--i:2">
+          <svg class="icon"><use href="#i-coin"/></svg>
+          <div><h4>相談は完全無料</h4><p>広告料等で運営しているため、ご利用者様に費用が発生することはありません。</p></div>
+        </div>
+        <div class="reason-item reveal" style="--i:3">
+          <svg class="icon"><use href="#i-compare"/></svg>
+          <div><h4>複数プランを比較できる</h4><p>1社に絞る前に、複数の選択肢を並べて検討することができます。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06. ご利用の流れ ============ -->
+  <section class="section-alt" id="flow">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">FLOW</span>
+        <h2>ご利用の流れ</h2>
+        <p>お問い合わせから相談開始まで、最短即日でご案内可能です。</p>
+      </div>
+
+      <div class="flow-list reveal-group">
+        <div class="flow-connector" aria-hidden="true"></div>
+        <div class="flow-item reveal" style="--i:0">
+          <span class="icon-wrap"><svg class="icon" style="width:20px;height:20px"><use href="#i-mail"/></svg></span>
+          <span class="step-tag">STEP 01</span>
+          <h3>相談・お問い合わせ</h3>
+          <p>フォームまたはLINEから、ご都合の良い日時とご相談内容をお送りください。</p>
+        </div>
+        <div class="flow-item reveal" style="--i:1">
+          <span class="icon-wrap"><svg class="icon" style="width:20px;height:20px"><use href="#i-chat"/></svg></span>
+          <span class="step-tag">STEP 02</span>
+          <h3>ヒアリング</h3>
+          <p>専門アドバイザーが、ご予算やご希望、気になっている点を丁寧にお聞きします。</p>
+        </div>
+        <div class="flow-item reveal" style="--i:2">
+          <span class="icon-wrap"><svg class="icon" style="width:20px;height:20px"><use href="#i-compare"/></svg></span>
+          <span class="step-tag">STEP 03</span>
+          <h3>ご提案・比較</h3>
+          <p>状況に合わせた進め方や選択肢を整理し、比較しやすい形でご提示します。</p>
+        </div>
+        <div class="flow-item reveal" style="--i:3">
+          <span class="icon-wrap"><svg class="icon" style="width:20px;height:20px"><use href="#i-check"/></svg></span>
+          <span class="step-tag">STEP 04</span>
+          <h3>申し込み・利用開始</h3>
+          <p>ご納得いただいたうえで、次のステップへ。ご不安な点はいつでも再相談いただけます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07. 安心・信頼セクション ============ -->
+  <section id="assurance">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">PEACE OF MIND</span>
+        <h2>安心してご相談いただくために</h2>
+      </div>
+
+      <div class="assurance-grid reveal-group">
+        <div class="assurance-item reveal" style="--i:0"><span class="icon-wrap"><svg class="icon"><use href="#i-coin"/></svg></span><p>相談無料</p></div>
+        <div class="assurance-item reveal" style="--i:1"><span class="icon-wrap"><svg class="icon"><use href="#i-sales"/></svg></span><p>無理な営業なし</p></div>
+        <div class="assurance-item reveal" style="--i:2"><span class="icon-wrap"><svg class="icon"><use href="#i-user"/></svg></span><p>専門スタッフ対応</p></div>
+        <div class="assurance-item reveal" style="--i:3"><span class="icon-wrap"><svg class="icon"><use href="#i-device"/></svg></span><p>オンライン対応</p></div>
+        <div class="assurance-item reveal" style="--i:4"><span class="icon-wrap"><svg class="icon"><use href="#i-family"/></svg></span><p>ご家族で相談可</p></div>
+        <div class="assurance-item reveal" style="--i:5"><span class="icon-wrap"><svg class="icon"><use href="#i-beginner"/></svg></span><p>初めての方も歓迎</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08. お客様の声 ============ -->
+  <section class="section-alt" id="voices">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">VOICES</span>
+        <h2>ご利用いただいた方の声</h2>
+      </div>
+      <p class="voice-notice reveal">※掲載内容は制作用のイメージ（ダミーデータ）です</p>
+
+      <div class="voice-grid reveal-group">
+        <div class="voice-card reveal" style="--i:0">
+          <div class="voice-top">
+            <span class="voice-avatar">A</span>
+            <div class="voice-meta"><strong>30代・女性</strong><span>関東エリア／新築を検討</span></div>
+          </div>
+          <span class="voice-tag">はじめての住宅購入</span>
+          <div class="voice-stars">
+            <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="voice-text">何から手をつければいいか分からず不安でしたが、状況を整理してもらえたことで、進め方のイメージが持てました。営業される感じがなく、安心して話せました。</p>
+        </div>
+        <div class="voice-card reveal" style="--i:1">
+          <div class="voice-top">
+            <span class="voice-avatar">K</span>
+            <div class="voice-meta"><strong>40代・男性</strong><span>関西エリア／リフォーム検討</span></div>
+          </div>
+          <span class="voice-tag">リフォーム費用の相談</span>
+          <div class="voice-stars">
+            <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="voice-text">複数社を比較したかったのですが、時間がなく困っていました。中立な立場で選択肢を整理してもらえたので、自分たちに合う進め方が見えてきました。</p>
+        </div>
+        <div class="voice-card reveal" style="--i:2">
+          <div class="voice-top">
+            <span class="voice-avatar">M</span>
+            <div class="voice-meta"><strong>20代・女性</strong><span>中部エリア／住み替え検討</span></div>
+          </div>
+          <span class="voice-tag">オンライン相談を利用</span>
+          <div class="voice-stars">
+            <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+          </div>
+          <p class="voice-text">専門用語が多くて不安でしたが、一つひとつ丁寧に説明してもらえました。自宅からオンラインで相談できたので、子どもがいても利用しやすかったです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09. よくある質問 ============ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2>よくあるご質問</h2>
+      </div>
+
+      <div class="faq-list reveal-group">
+        <div class="faq-item reveal" data-open="false" style="--i:0">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>本当に相談は無料ですか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>はい、初回相談から追加のご相談まで、すべて無料でご利用いただけます。運営は提携企業からの協賛によって成り立っているため、利用者様に費用が発生することはありません。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:1">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>まだ何も決まっていなくても相談できますか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>もちろん可能です。「検討を始めたばかり」「情報収集の段階」という方のご相談がほとんどです。漠然とした状態からでも整理のお手伝いをいたします。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:2">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>無理な営業をされることはありませんか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>ご希望のない限り、こちらから特定の会社を強く勧めることはありません。ご判断はあくまでお客様ご自身のペースで進めていただけます。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:3">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>オンラインでも相談できますか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>はい、ビデオ通話やLINEチャットでのご相談に対応しています。ご自宅からご都合の良いタイミングでご利用いただけます。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:4">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>1回あたり、どのくらい時間がかかりますか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>目安は60分程度です。内容によって前後しますので、お時間に限りがある場合は事前にお申し付けください。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:5">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>対応しているエリアを教えてください
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>全国○○地域に対応しています（オンライン相談は全国どこからでも可能です）。対応可否は入力フォームからお気軽にお問い合わせください。</p></div></div>
+        </div>
+        <div class="faq-item reveal" data-open="false" style="--i:6">
+          <button class="faq-q" aria-expanded="false">
+            <span class="q-mark">Q</span>家族と一緒でなく、一人で相談してもいいですか？
+            <svg class="icon chev"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner"><p>お一人でのご相談も歓迎しています。後日、ご家族向けに改めてご説明する場を設けることも可能です。</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. 最終CTA + フォーム ============ -->
+  <section class="section-primary" id="contact">
+    <div class="container">
+      <div class="final-cta-top reveal">
+        <span class="eyebrow" style="color:var(--color-wood)">GET STARTED</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,4.6vw,2.4rem);line-height:1.6;">
+          まずはお気軽に、<br class="only-sp">ご相談ください。
+        </h2>
+        <p style="color:rgba(255,255,255,0.78);margin-top:14px;max-width:520px;margin-left:auto;margin-right:auto;">
+          「相談するほどでもないかも」と思うようなことでも大丈夫です。<br>
+          小さな疑問から、ぜひお聞かせください。
+        </p>
+        <div class="assure-strip">
+          <span><svg class="icon"><use href="#i-coin"/></svg>相談無料</span>
+          <span><svg class="icon"><use href="#i-sales"/></svg>営業なし</span>
+          <span><svg class="icon"><use href="#i-clock"/></svg>1分で送信完了</span>
+        </div>
+      </div>
+
+      <div class="contact-wrap reveal">
+        <form class="contact-form" id="contactForm" novalidate>
+          <h3>無料相談・お問い合わせ</h3>
+          <p class="contact-sub">下記フォームにご入力のうえ送信してください。1〜2営業日以内にご連絡いたします。</p>
+
+          <div class="form-row">
+            <label for="f-name">お名前<span class="req-tag">必須</span></label>
+            <input type="text" id="f-name" name="name" placeholder="山田 太郎" required autocomplete="name">
+          </div>
+
+          <div class="form-row">
+            <label for="f-email">メールアドレス<span class="req-tag">必須</span></label>
+            <input type="email" id="f-email" name="email" placeholder="example@mail.com" required autocomplete="email">
+          </div>
+
+          <div class="form-row">
+            <label for="f-tel">電話番号<span class="opt-tag">任意</span></label>
+            <input type="tel" id="f-tel" name="tel" placeholder="090-0000-0000" autocomplete="tel">
+          </div>
+
+          <div class="form-row">
+            <label>希望の連絡方法<span class="req-tag">必須</span></label>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="email" checked><span>メール</span></label>
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="tel"><span>電話</span></label>
+              <label class="radio-pill"><input type="radio" name="contactMethod" value="line"><span>LINE</span></label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="f-message">ご相談内容<span class="opt-tag">任意</span></label>
+            <textarea id="f-message" name="message" placeholder="例）リフォームの費用相場を知りたい／新築の進め方が分からない、など"></textarea>
+          </div>
+
+          <p class="form-privacy">
+            送信された情報は、ご相談対応の目的以外には使用いたしません。詳しくは<a href="#">プライバシーポリシー</a>をご確認ください。
+          </p>
+
+          <button type="submit" class="btn btn-accent btn-lg btn-block">無料で相談する</button>
+          <p class="cta-note">入力は約1分<span class="dot"></span>強引な勧誘は一切ありません</p>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <span class="icon-wrap"><svg class="icon" style="width:30px;height:30px"><use href="#i-check"/></svg></span>
+          <h4>お問い合わせを受け付けました</h4>
+          <p>ご入力ありがとうございます。担当アドバイザーより、1〜2営業日以内にご連絡いたします。<br>今しばらくお待ちください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-logo">イエノコト</div>
+    <nav class="footer-links">
+      <a href="#">運営会社</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">利用規約</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+    <p>&copy; 2026 Ienokoto. This is a sample landing page created for demonstration purposes.</p>
+  </div>
+</footer>
+
+<!-- ============ モバイル固定CTA ============ -->
+<div class="sticky-cta" aria-hidden="false">
+  <a href="#contact" class="btn btn-outline" style="border-color:var(--color-line);background:var(--color-white);">
+    <svg class="icon" style="width:18px;height:18px"><use href="#i-mail"/></svg>無料相談
+  </a>
+  <a href="#contact" class="btn btn-line">
+    <svg class="icon" style="width:18px;height:18px"><use href="#i-line"/></svg>LINEで相談
+  </a>
+</div>
+
+<style>
+  @media (max-width: 767px) { .only-sp { display: inline; } }
+  @media (min-width: 768px) { .only-sp { display: none; } }
+</style>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- ヘッダー：スクロールで影 ---- */
+  var header = document.getElementById('siteHeader');
+  var lastY = 0;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('is-scrolled', y > 8);
+    lastY = y;
+  }, { passive: true });
+
+  /* ---- スクロールリビール ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---- FAQ アコーディオン ---- */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', function () {
+      var isOpen = item.getAttribute('data-open') === 'true';
+      // 他のFAQは開いたままでOK（同時に複数開ける仕様）
+      item.setAttribute('data-open', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  /* ---- お問い合わせフォーム（デモ送信） ---- */
+  var form = document.getElementById('contactForm');
+  var successBox = document.getElementById('formSuccess');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name = form.querySelector('#f-name');
+      var email = form.querySelector('#f-email');
+      var valid = true;
+
+      [name, email].forEach(function (field) {
+        if (!field.value.trim()) {
+          valid = false;
+          field.style.borderColor = 'var(--color-accent)';
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+
+      if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        valid = false;
+        email.style.borderColor = 'var(--color-accent)';
+      }
+
+      if (!valid) {
+        var firstInvalid = form.querySelector('input[style*="border-color"]');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      /*
+        本番運用時は、ここで実際の送信処理に置き換えてください（例）：
+        fetch('/api/contact', { method: 'POST', body: new FormData(form) })
+          .then(...)
+      */
+      form.classList.add('is-hidden');
+      successBox.classList.add('is-visible');
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
